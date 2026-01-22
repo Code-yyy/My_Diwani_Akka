@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A Small Gift for Akka 🌿</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="akka.css"/>
+</head>
+<body>
+
+  <!-- Falling Flowers -->
+  <div class="petals" id="petals" hidden aria-hidden="true"></div>
+
+  <!-- Intro Gate -->
+  <div id="intro-gate">
+    <div class="gate-content">
+      <h1>A Small Gift for You, Akka 🌿</h1>
+      <button id="open-button">🌸 Tap to Open</button>
+    </div>
+  </div>
+
+  <!-- Main Page -->
+  <main id="gift-page" hidden aria-hidden="true">
+    <div class="content-wrapper">
+      <h1 class="title">Just For You</h1>
+      <h2 class="name">My Dear Diwani Akka 💚</h2>
+
+      <img src="Diwani.JPG" alt="Akka Photo" class="photo"/>
+
+      <div class="message">
+        <p>Dear Akka 💎</p>
+
+        <p>
+          This isn’t for any special day ✨  
+          It’s just a small little gift 🌿🎁 to remind you  
+          how special and precious you truly are 💫💛
+        </p>
+
+        <p>
+          Your presence itself feels calming 🌱🤍  
+          The way you spread kindness, warmth and positivity  
+          makes everything feel lighter and better 🕊️🌸
+        </p>
+
+        <p>
+          I truly see you as my own sister 🤍🌿  
+          This bond we share means more to me than I can explain,
+          and it’s something I hold very close to my heart 🫶✨
+        </p>
+
+        <p>
+          I hope this connection stays the same, always 💚🫂  
+          No matter where life takes us,  
+          you will always mean a lot to me Akka 🤍🌱
+        </p>
+
+        <p class="signature">– Always, Your's Afri 💚</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Background Music -->
+  <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openButton = document.getElementById('open-button');
+      const introGate = document.getElementById('intro-gate');
+      const giftPage = document.getElementById('gift-page');
+      const petals = document.getElementById('petals');
+      const bgm = document.getElementById('bgm');
+
+      const flowerEmojis = ['🌸', '🌼', '🌺', '🌷', '💮'];
+
+      openButton.addEventListener('click', async () => {
+        introGate.classList.add('hidden');
+        try { await bgm.play(); } catch(e) {}
+
+        setTimeout(() => {
+          introGate.style.display = 'none';
+          petals.hidden = false;
+          giftPage.hidden = false;
+          giftPage.classList.add('active');
+
+          const createFlower = () => {
+            const flower = document.createElement('div');
+            flower.className = 'petal';
+            flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+            flower.style.left = Math.random() * 100 + 'vw';
+
+            flower.style.fontSize = 14 + Math.random() * 14 + 'px';
+            flower.style.opacity = 0.4 + Math.random() * 0.4;
+
+            // 🌸 SNOW-LIKE SLOW FALL
+            const duration = 12 + Math.random() * 12;
+            flower.style.animationDuration = `${duration}s`;
+
+            const sway = 5 + Math.random() * 10;
+            flower.style.setProperty('--sway', sway + 'px');
+            flower.style.setProperty('--sway-duration', 4 + Math.random() * 3 + 's');
+
+            petals.appendChild(flower);
+
+            flower.addEventListener('animationend', () => flower.remove());
+          };
+
+          for (let i = 0; i < 25; i++) {
+            setTimeout(createFlower, i * 500);
+          }
+
+          setInterval(createFlower, 900);
+
+        }, 900);
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
